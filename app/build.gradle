@@ -40,4 +40,7 @@ dependencies {
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${v_coroutines}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${v_coroutines}"
+
+    implementation 'com.squareup.okhttp3:okhttp:3.8.0'
+    implementation 'com.squareup.okio:okio:1.12.0'
 }

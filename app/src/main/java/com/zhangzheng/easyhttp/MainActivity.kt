@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.zhangzheng.easyhttp.library.EasyHttp
-import com.zhangzheng.easyhttp.library.adapter.VolleyAdapter
+import com.zhangzheng.easyhttp.library.adapter.OKHttpAdapter
 import com.zhangzheng.easyhttp.library.adapter.parse.FastJsonParse
 import com.zhangzheng.easyhttp.library.launch
 import com.zhangzheng.easyhttp.library.request
@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity()  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        EasyHttp.init(VolleyAdapter(this,FastJsonParse()))
+        EasyHttp.init(OKHttpAdapter(FastJsonParse()))
 
         launch {
             val response = BaiDuReq("1111").request<BaiDuResponse>()
