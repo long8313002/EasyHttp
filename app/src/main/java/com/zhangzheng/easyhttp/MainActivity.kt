@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity()  {
         EasyHttp.init(DefaultAdapter(GsonJsonParse()))
 
         launch {
-            val response = BaiDuReq(q = "电脑").request<BaiDuResponse>()
-            Toast.makeText(this@MainActivity, response?.result?.toString()?:"网络异常", Toast.LENGTH_SHORT).show()
+            val response = TestReq(q = "电脑").request<TestResponse>()
+            Toast.makeText(this, response?.result?.toString()?:"网络异常", Toast.LENGTH_SHORT).show()
         }
     }
 

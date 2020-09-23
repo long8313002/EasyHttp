@@ -7,9 +7,9 @@ import com.zhangzheng.easyhttp.library.URL
 
 @URL("https://suggest.taobao.com/sug")
 @GET
-data class BaiDuReq(var code: String = "utf-8", val q: String) : IReq
+data class TestReq(var code: String = "utf-8", val q: String) : IReq
 
 
-class BaiDuResponse {
+class TestResponse {
     var result: List<Any>? = null
 }
