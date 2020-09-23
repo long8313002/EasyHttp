@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.zhangzheng.easyhttp.library.EasyHttp
+import com.zhangzheng.easyhttp.library.adapter.DefaultAdapter
 import com.zhangzheng.easyhttp.library.adapter.OKHttpAdapter
 import com.zhangzheng.easyhttp.library.adapter.VolleyAdapter
 import com.zhangzheng.easyhttp.library.adapter.parse.GsonJsonParse
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity()  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        EasyHttp.init(OKHttpAdapter(GsonJsonParse()))
+        EasyHttp.init(DefaultAdapter(GsonJsonParse()))
 
         launch {
             val response = BaiDuReq(q = "电脑").request<BaiDuResponse>()
