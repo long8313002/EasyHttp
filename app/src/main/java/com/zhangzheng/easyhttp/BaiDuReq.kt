@@ -2,13 +2,14 @@ package com.zhangzheng.easyhttp
 
 import com.zhangzheng.easyhttp.library.IReq
 import com.zhangzheng.easyhttp.library.GET
+import com.zhangzheng.easyhttp.library.POST
 import com.zhangzheng.easyhttp.library.URL
 
-@URL("http://www.weather.com.cn/data/cityinfo/101010100.html")
+@URL("https://suggest.taobao.com/sug")
 @GET
-data class BaiDuReq(var orderId:String ) :IReq
+data class BaiDuReq(var code: String = "utf-8", val q: String) : IReq
 
 
-class BaiDuResponse  {
-    var weatherinfo = ""
+class BaiDuResponse {
+    var result: List<Any>? = null
 }

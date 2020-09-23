@@ -1,6 +1,7 @@
 package com.zhangzheng.easyhttp.library.adapter
 
 import android.content.Context
+import com.android.volley.AuthFailureError
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -8,7 +9,6 @@ import com.zhangzheng.easyhttp.library.EasyHttp
 import com.zhangzheng.easyhttp.library.IResponseParse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 import java.util.concurrent.CountDownLatch
 
 
@@ -23,12 +23,25 @@ class VolleyAdapter(var context: Context, var parse: IResponseParse) : EasyHttp.
 
             var content: String? = ""
 
-            val stringRequest = StringRequest(url, Response.Listener {
+            val success = Response.Listener<String> {
                 content = it
                 lock.countDown()
-            }, Response.ErrorListener {
+            }
+
+            val error = Response.ErrorListener {
                 lock.countDown()
-            })
+            }
+
+            val stringRequest = if(isGet){
+                StringRequest(url.urlWithParam(params),success, error)
+            }else{
+                object : StringRequest(Method.POST, url, success, error) {
+                    @Throws(AuthFailureError::class)
+                    override fun getParams(): Map<String, String> {
+                        return params
+                    }
+                }
+            }
 
             try {
                 mQueue.add(stringRequest)
@@ -36,7 +49,6 @@ class VolleyAdapter(var context: Context, var parse: IResponseParse) : EasyHttp.
             }catch (e:Exception){
 
             }
-
 
             content ?: ""
         }

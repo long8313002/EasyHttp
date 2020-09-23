@@ -36,11 +36,12 @@ dependencies {
     implementation project(":library")
 
     implementation 'com.android.volley:volley:1.1.1'
-    implementation 'com.alibaba:fastjson:1.2.54'
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${v_coroutines}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${v_coroutines}"
 
     implementation 'com.squareup.okhttp3:okhttp:3.8.0'
     implementation 'com.squareup.okio:okio:1.12.0'
+
+    implementation 'com.google.code.gson:gson:2.8.6'
 }
